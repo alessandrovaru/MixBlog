@@ -1,7 +1,12 @@
 class ArticlesController < ApplicationController
+    
+    def show
+        @article = Article.find(params[:id])
+    end
+
     def new 
+        #Nueva instancia del objeto con todos los campos vacios
         @article = Article.new
-        @article.title = 'demo'
     end
 
     def create
@@ -9,7 +14,17 @@ class ArticlesController < ApplicationController
         render json: @article
     end
 
-    def show
+    def edit
         @article = Article.find(params[:id])
     end
+
+    def update
+        @article = Article.find(params[:id])
+        
+        @article.update(title: params[:article][:title], content: params[:article][:content]) 
+        
+        redirect_to @article
+    end
+
+    
 end
