@@ -12,6 +12,27 @@
   </head>
 
   <body>
-    <%= yield %>
+
+  <% if notice %>
+    <p class="alert alert-primary"><%= notice %></p>
+  <% end %>
+
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+
+    
+    <nav class="nav">
+      <li class="nav-item">
+        <%= link_to "inicio", root_path, class: "nav-link" %>
+      </li>
+      
+      <li class="nav-item">
+        <%= link_to "Crear", new_article_path, class: "nav-link"  %>
+      </li>
+    </nav>
+    <section class="yield">
+      <%= yield %>
+    </section>
   </body>
 </html>
