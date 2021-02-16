@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   #   delete "articles/:id", to: "articles#destroy"
   #   post "articles", to: "articles#create"
 
-  
+  get "articles/user/:user_id", to: "articles#from_author"
 
 
   root to:"home#index"
