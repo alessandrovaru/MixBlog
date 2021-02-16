@@ -45,6 +45,7 @@ class ArticlesController < ApplicationController
         @user = User.find(params[:user_id])
     end
 
+    # Strong Parameters 
     def article_params
         params.require(:article).permit(:title, :content)
     end
