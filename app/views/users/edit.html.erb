@@ -1,0 +1,11 @@
+<div class="card">
+    <h2>Editar</h2>
+    <%= image_tag url_for(current_user.avatar)%>
+    <%= form_with(model: current_user, local: true) do |form|%>
+        <div class="field">
+            <%= form.label :avatar %>
+            <%= form.file_field :avatar %>
+            <%= form.submit "guardar" %>
+        </div>
+    <%end%>
+</div>

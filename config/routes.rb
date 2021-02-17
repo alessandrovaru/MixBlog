@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     #delete "articles/:id", to: "articles#destroy"
     #post "articles", to: "articles#create"
 
+     get "perfil", to: "users#edit"
+
+      resources :users, only: [:update]
+
 
 
   root to:"home#index"
