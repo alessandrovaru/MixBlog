@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
 
     before_action :find_article, only: [:show, :edit, :update, :destroy]
 
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
     def index
         @articles = Article.all        
     end
@@ -13,19 +15,23 @@ class ArticlesController < ApplicationController
     def new 
         
         @article = Article.new
+        @categories = Category.all
     end
 
     def create
-        @article = Article.create(title: params[:article][:title], content: params[:article][:content]) 
-        render json: @article
+        @article = current_user.articles.create(article_params) 
+        @categories = Category.all
+        @article.save_category
+        redirect_to @article
     end
 
     def edit
-        
+        @categories = Category.all
     end
     
     def update
-        @article.update(title: params[:article][:title], content: params[:article][:content]) 
+        @article.update(article_params) 
+        @article.save_category
         redirect_to @article
     end
 
@@ -36,6 +42,15 @@ class ArticlesController < ApplicationController
 
     def find_article
         @article = Article.find(params[:id])
+    end
+
+    def from_author
+        @user = User.find(params[:user_id])
+    end
+
+    # Strong Parameters 
+    def article_params
+        params.require(:article).permit(:title, :content, category_elements:[])
     end
 
     

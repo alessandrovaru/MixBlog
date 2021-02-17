@@ -2,6 +2,12 @@
 <div class="container-fluid">
     <h1><%= @article.title %></h1>
     <p><%= @article.content %></p>
+    
+    <% @article.categories.each do |a| %>
+        <p><%= a.title %></p>
+    <% end %>
+    
+    <p><%= @article.user.email %></p>
 </div>
 <div class="container-fluid">
     <%= link_to "Eliminar", @article, method: :delete %>

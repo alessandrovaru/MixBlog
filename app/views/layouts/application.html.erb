@@ -21,16 +21,34 @@
     <p class="alert alert-danger"><%= alert %></p>
   <% end %>
 
-    
     <nav class="nav">
       <li class="nav-item">
         <%= link_to "inicio", root_path, class: "nav-link" %>
       </li>
-      
+      <li class="nav-item">
+        <%= link_to "Articles", articles_path, class: "nav-link"  %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Articles", categories_path, class: "nav-link"  %>
+      </li>
       <li class="nav-item">
         <%= link_to "Crear", new_article_path, class: "nav-link"  %>
       </li>
+      
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Cerrar sesion", destroy_user_session_path, method: :delete, class: "nav-link"  %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Iniciar sesion", new_user_session_path,  class: "nav-link"  %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Registrarse", new_user_registration_path,  class: "nav-link"  %>
+        </li>
+      <% end %>
     </nav>
+
     <section class="yield">
       <%= yield %>
     </section>
