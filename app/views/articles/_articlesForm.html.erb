@@ -11,7 +11,14 @@
 
     <div>
         <%=form.label :category_elements %>
-        <%=form.text_field :category_elements %>
+        <div class="row" >
+            <% @categories.each do |category| %>
+                <label for="" class="col-6 col-sm-3">
+                    <%= form.check_box :category_elements, {multiple: true}, category.id, nil%>
+                    <%= category.title%>
+                </label>
+            <% end %>
+        </div>
     </div>
 
     <div>
